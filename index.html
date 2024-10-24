@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Intro component with sign up form</title>
+  </head>
+  <body>
+    <header class="aside-left">
+      <div class="Learn-heading">
+        <h2>
+          Learn to code by <br />
+          watching others
+        </h2>
+      </div>
+      <div class="description">
+        <p>
+          See how experienced developers solve problems in real-time. <br />
+          Watching scripted tutorials is great, but understanding how <br />
+          developers think is invaluable.
+        </p>
+      </div>
+    </header>
+    <main class="wrapper">
+      <footer class="stopka-trial">
+        <p>
+          Try it free 7 days
+          <span class="span-one"> then $20/mo. thereafter</span>
+        </p>
+      </footer>
+      <div class="container">
+        <div class="inputs">
+          <div class="margining">
+            <input type="text" placeholder="First Name" id="first-name" />
+            <h5 id="warning-first">First name cannot be empty</h5>
+          </div>
+          <div class="margining">
+            <input type="text" placeholder="Last Name" id="last-name" />
+            <h5>Last name cannot be empty</h5>
+          </div>
+          <div class="margining">
+            <input type="text" placeholder="Email Address" id="email-input" />
+            <h5>Looks like this is not an email</h5>
+          </div>
+          <div class="margining">
+            <input type="text" placeholder="Password" id="password-input" />
+            <h5>Password cannot be empty</h5>
+          </div>
+        </div>
+        <div class="button" id="button">
+          <button>CLAIM YOUR FREE TRIAL</button>
+        </div>
+        <div class="Therms">
+          <p>
+            By clicking the button you are agreeing to our
+             <a href="" style="color: red; text-decoration: none;">Therms and Services</a>  
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+     
+  
+  const firstName = document.getElementById("first-name");
+  const lastName = document.getElementById("last-name");
+  const email = document.getElementById("email-input");
+  const password = document.getElementById("password-input");
+  const warningFirst = document.getElementById("warning-first");
+  const claimBtn = document.getElementById("button");
+
+  
+  claimBtn.addEventListener("click", function () {
+    // Sprawdzenie pola "First Name"
+    if (firstName.value.trim() === "") {
+      warningFirst.style.display = "block"; // Wyświetla ostrzeżenie
+      firstName.style.borderColor = "red";  // Podkreśla pole na czerwono
+    } else {
+      warningFirst.style.display = "none";  // Ukrywa ostrzeżenie
+      firstName.style.borderColor = "lightgrey"; // Przywraca domyślny kolor
+    }
+
+    // Analogicznie można dodać walidację dla innych pól (Last Name, Email, Password)
+    // Poniżej przykładowa walidacja dla pola "Last Name":
+    const warningLast = lastName.nextElementSibling; // Pobranie następnego elementu (h5) obok input
+    if (lastName.value.trim() === "") {
+      warningLast.style.display = "block";
+      lastName.style.borderColor = "red";
+    } else {
+      warningLast.style.display = "none";
+      lastName.style.borderColor = "lightgrey";
+    }
+
+    // Sprawdzenie Email
+    const warningEmail = email.nextElementSibling;
+    if (email.value.trim() === "" || !validateEmail(email.value)) {
+      warningEmail.style.display = "block";
+      email.style.borderColor = "red";
+    } else {
+      warningEmail.style.display = "none";
+      email.style.borderColor = "lightgrey";
+    }
+
+    // Sprawdzenie Password
+    const warningPassword = password.nextElementSibling;
+    if (password.value.trim() === "") {
+      warningPassword.style.display = "block";
+      password.style.borderColor = "red";
+    } else {
+      warningPassword.style.display = "none";
+      password.style.borderColor = "lightgrey";
+    }
+  });
+
+  // Funkcja do walidacji adresu email
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
+</script>
+
+    </script>
+  </body>
+</html>
